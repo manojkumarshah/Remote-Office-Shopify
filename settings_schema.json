@@ -1,0 +1,13 @@
+// settings_schema.json
+{
+    "name": "Remote Office Settings",
+    "settings": [
+        {
+            "type": "text",
+            "label": "Welcome Message",
+            "id": "welcome_message",
+            "default": "Welcome to our Remote Office!"
+        }
+        // Add more settings as needed
+    ]
+}
