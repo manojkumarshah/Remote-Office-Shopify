@@ -1,0 +1,70 @@
+{% assign featured_product = product.metafields.featured_product %}
+{% assign featured_product_id = featured_product.id %}
+{% assign featured_product = all_products[featured_product_id] %}
+
+{% if featured_product %}
+  <div class="product-section">
+    <div class="row">
+      <div class="col-md-2 thumbnail-area">
+        <div class="product-thumbnail">
+          {% if featured_product.images.size > 0 %}
+            {% for image in featured_product.images %}
+              <img src="{{ image.src | img_url: 'medium' }}" alt="Product Gallery Image">
+            {% endfor %}
+          {% else %}
+            <p>No gallery images available for this product.</p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-5 main-img">
+        <div class="product-main-image">
+          <img src="{{ featured_product.featured_image.src | img_url: 'medium' }}" alt="product-main-image">
+        </div>
+      </div>
+      <div class="col-md-5 detail-area">
+        <div class="product-details">
+          <!-- product category  -->
+          <ul class="pro-cat">
+            {{ featured_product.product_type | replace: ',', '<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none"><circle cx="2" cy="2" r="2" fill="#333333"/></svg>' | raw }}
+          </ul>
+          <h1 class="product-title">
+            {{ featured_product.title }}
+          </h1>
+          <p class="product-description">
+            {{ featured_product.description }}
+          </p>
+        </div>
+        <hr>
+        {% assign product_features = featured_product.metafields.product_features %}
+        {% if product_features.size > 0 %}
+          <div class="product-additional-features">
+            {% for feature in product_features %}
+              <div class="features">
+                <h2 class="title">{{ feature.title }}</h2>
+                <p class="description">{{ feature.description }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="product-action">
+          <h2 class="title">Select Size</h2>
+          <div class="size">
+            {% for variation in featured_product.variants %}
+              <button class="size-btn" data-price="{{ variation.price }}">{{ variation.option1 }}</button>
+            {% endfor %}
+          </div>
+          <div class="add-to-cart">
+            <button class="add-to-cart-btn">Add to your cart - {{ featured_product.price | money }}</button>
+          </div>
+          {% assign pay_note = featured_product.metafields.payment_note %}
+          {% if pay_note %}
+            <div class="other-pay">
+              <h2 class="title">{{ pay_note.title }}</h2>
+              <p class="description">{{ pay_note.description }}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
