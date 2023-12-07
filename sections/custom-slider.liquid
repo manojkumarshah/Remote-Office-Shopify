@@ -69,87 +69,116 @@
 {% endschema %}
 
 <style>
-  .carousel-container {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 800px; /* Adjust as needed */
-    margin: auto;
+    /* Start Key Ingredients Section  */
+
+  .key-ingredients {
+      background: #fff;
+      padding: 50px 10px;
   }
 
-  .carousel-wrapper {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+  .key-ingredients .key-ingredients-slider-item-img img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
   }
 
-  .carousel-slide {
-    flex: 0 0 100%;
-    box-sizing: border-box;
+  .key-ingredients .key-ingredients-title h2 {
+      color: var(--PRIMARY-FONT-GREY, #333);
+      font-family: KudryashevDisplay;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 32px;
+      padding: 20px 100px;
   }
 
-  .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    background-color: #ddd;
-    border: none;
-    color: #333;
-    cursor: pointer;
+  .key-ingredients .key-ingredients-slider-item {
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      padding: 12px;
   }
 
-  .left-arrow {
-    left: 0;
+  .key-ingredients-slider-item-title h2 {
+      color: #000;
+      font-family: Söhne;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      /* 88.889% */
+      text-transform: capitalize;
+      padding: 12px 0;
   }
 
-  .right-arrow {
-    right: 0;
+  .key-ingredients-slider-item-title p {
+      color: var(--LIGHT-FONT-GREY, #42423F);
+      font-family: Söhne;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      /* 150% */
+      text-transform: capitalize;
   }
+
+  @media (max-width: 767px) {
+      .carousel-inner .carousel-item>div {
+          display: none;
+      }
+
+      .carousel-inner .carousel-item>div:first-child {
+          display: block;
+      }
+  }
+
+  .carousel-inner .carousel-item.active,
+  .carousel-inner .carousel-item-next,
+  .carousel-inner .carousel-item-prev {
+      display: flex;
+  }
+
+  /* medium and up screens */
+  @media (min-width: 768px) {
+
+      .carousel-inner .carousel-item-end.active,
+      .carousel-inner .carousel-item-next {
+          transform: translateX(25%);
+      }
+
+      .carousel-inner .carousel-item-start.active,
+      .carousel-inner .carousel-item-prev {
+          transform: translateX(-25%);
+      }
+  }
+
+  .carousel-inner .carousel-item-end,
+  .carousel-inner .carousel-item-start {
+      transform: translateX(0);
+  }
+
+  .key-ingredients-slider .card {
+      margin: 0 10px;
+      height: 800px;
+  }
+
+  /* End Key Ingredients Section   */
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const carouselWrapper = document.querySelector(".carousel-wrapper");
-    const slides = document.querySelectorAll(".carousel-slide");
-    const leftArrow = document.querySelector(".left-arrow");
-    const rightArrow = document.querySelector(".right-arrow");
-    const slidesToShow = 4; // Number of slides to show at a time
-    let currentIndex = 0;
+    let items = document.querySelectorAll(".carousel .carousel-item");
 
-    function updateCarousel() {
-      const newTransformValue = -currentIndex * (100 / slidesToShow) + "%";
-      carouselWrapper.style.transform = "translateX(" + newTransformValue + ")";
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % (slides.length - slidesToShow + 1);
-      updateCarousel();
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + slides.length) % (slides.length - slidesToShow + 1);
-      updateCarousel();
-    }
-
-    // Auto slide every 3 seconds
-    setInterval(nextSlide, 3000);
-
-    // Arrow key navigation
-    document.addEventListener("keydown", function (event) {
-      switch (event.key) {
-        case "ArrowLeft":
-          prevSlide();
-          break;
-        case "ArrowRight":
-          nextSlide();
-          break;
-        default:
-          break;
+  items.forEach((el) => {
+    const minPerSlide = 4;
+    let next = el.nextElementSibling;
+    for (var i = 1; i < minPerSlide; i++) {
+      if (!next) {
+        // wrap carousel by using first child
+        next = items[0];
       }
-    });
-
-    // Arrow button navigation
-    leftArrow.addEventListener("click", prevSlide);
-    rightArrow.addEventListener("click", nextSlide);
+      let cloneChild = next.cloneNode(true);
+      el.appendChild(cloneChild.children[0]);
+      next = next.nextElementSibling;
+    }
   });
 </script>
