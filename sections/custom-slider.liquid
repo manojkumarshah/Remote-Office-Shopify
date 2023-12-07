@@ -89,11 +89,12 @@
     const slides = document.querySelectorAll(".carousel-slide");
     const leftArrow = document.querySelector(".left-arrow");
     const rightArrow = document.querySelector(".right-arrow");
+    const slideWidth = slides[0].offsetWidth; // Assuming all slides have the same width
 
     let currentIndex = 0;
 
     function updateCarousel() {
-      const newTransformValue = -currentIndex * 100 + "%";
+      const newTransformValue = -currentIndex * slideWidth + "px";
       carouselWrapper.style.transform = "translateX(" + newTransformValue + ")";
     }
 
@@ -103,12 +104,12 @@
     }
 
     function nextSlide() {
-      currentIndex = (currentIndex + 1) % slides.length;
+      currentIndex = (currentIndex + 4) % slides.length; // Move by four sections
       updateCarousel();
     }
 
     function prevSlide() {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      currentIndex = (currentIndex - 4 + slides.length) % slides.length; // Move by four sections
       updateCarousel();
     }
 
@@ -134,3 +135,4 @@
     rightArrow.addEventListener("click", nextSlide);
   });
 </script>
+
