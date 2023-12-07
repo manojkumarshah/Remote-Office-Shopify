@@ -10,7 +10,7 @@
         <div class="carousel-inner key-ingredients-slider" role="listbox">
           {% assign count = 1 %}
           {% for slide in section.blocks %}
-            <div class="carousel-item {{ count | cycle: 'active','' }}">
+            <div class="carousel-item {% if count == 1 %}active{% endif %}">
               <div class="col-md-3">
                 <div class="card">
                   <div class="key-ingredients-slider-item-img">
