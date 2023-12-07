@@ -1,6 +1,6 @@
 {% assign featured_product = product.metafields.featured_product %}
 {% assign featured_product_id = featured_product.id %}
-{% assign featured_product = all_products[featured_product_id] %}
+{% assign featured_product = collections.all.products | where: 'tags', 'featured' | first %}
 
 {% if featured_product %}
   <div class="product-section">
