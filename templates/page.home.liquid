@@ -1,3 +1,10 @@
-{% for product in collections.all.products %}
-  {{ product.title }} - {{ product.id }}<br>
-{% endfor %}
+{% assign featured_product = collections.all.products | where: 'tags', 'test' | first %}
+
+{% if featured_product %}
+  <!-- Your code to display the featured product -->
+  <h2>{{ featured_product.title }}</h2>
+  <p>{{ featured_product.description }}</p>
+{% else %}
+  <!-- Code to handle the case when there is no featured product -->
+  <p>No featured product found.</p>
+{% endif %}
