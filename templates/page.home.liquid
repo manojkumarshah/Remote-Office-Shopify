@@ -1,9 +1,32 @@
-{% assign featured_product = collections.all.products | where: 'tags', 'test' | first %}
+{% assign featured_product = collections.all.products | where: 'metafields.global.featured_product', 'true' | first %}
 
 {% if featured_product %}
   <!-- Your code to display the featured product -->
-  <h2>{{ featured_product.title }}</h2>
-  <p>{{ featured_product.description }}</p>
+  <div class="product-section">
+    <div class="row">
+      <!-- ... Other sections of your code ... -->
+      <div class="col-md-5 detail-area">
+        <div class="product-details">
+          <!-- ... Other details ... -->
+        </div>
+        <hr>
+        {% assign product_features = featured_product.metafields.product_features %}
+        {% if product_features.size > 0 %}
+          <div class="product-additional-features">
+            {% for feature in product_features %}
+              <div class="features">
+                <h2 class="title">{{ feature.title }}</h2>
+                <p class="description">{{ feature.description }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="product-action">
+          <!-- ... Other actions ... -->
+        </div>
+      </div>
+    </div>
+  </div>
 {% else %}
   <!-- Code to handle the case when there is no featured product -->
   <p>No featured product found.</p>
