@@ -1,12 +1,48 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Featured Product",
+  "settings": [
+    {
+      "type": "product",
+      "label": "Select Featured Product",
+      "id": "featured_product"
+    }
+  ]
+}
 {% endschema %}
 
-{% stylesheet %}
-{% endstylesheet %}
+{% assign featured_product_id = section.settings.featured_product %}
 
-{% javascript %}
-{% endjavascript %}
+{% if featured_product_id %}
+  {% assign featured_product = all_products[featured_product_id] %}
+  <div class="featured-product-container">
+    <div class="product-images">
+      {% for image in featured_product.images %}
+        <img src="{{ image.src | img_url: 'medium' }}" alt="{{ featured_product.title }}" class="thumbnail">
+      {% endfor %}
+    </div>
+
+    <div class="product-details">
+      <h2>{{ featured_product.title }}</h2>
+      <p class="description">{{ featured_product.description }}</p>
+      <p class="price">{{ featured_product.price | money }}</p>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+{% else %}
+  <p>No featured product selected.</p>
+{% endif %}
+
+/* Add your CSS here */ .featured-product-container { display: flex; justify-content: space-around; align-items:
+flex-start; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+
+.product-images { flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+
+.thumbnail { width: 100px; /* Adjust the size as needed */ margin-bottom: 10px; }
+
+.product-details { flex: 1; padding: 20px; box-sizing: border-box; }
+
+/* Responsive Styles */ @media (max-width: 768px) { .featured-product-container { flex-direction: column; align-items:
+center; }
+
+.product-details { width: 100%; } }
