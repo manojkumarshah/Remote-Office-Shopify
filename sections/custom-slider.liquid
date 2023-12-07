@@ -45,3 +45,94 @@
   <button class="arrow left-arrow">&lt;</button>
   <button class="arrow right-arrow">&gt;</button>
 </div>
+
+<style>
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    margin: auto;
+  }
+
+  .carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background-color: #ddd;
+    border: none;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .left-arrow {
+    left: 0;
+  }
+
+  .right-arrow {
+    right: 0;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carouselWrapper = document.querySelector(".carousel-wrapper");
+    const slides = document.querySelectorAll(".carousel-slide");
+    const leftArrow = document.querySelector(".left-arrow");
+    const rightArrow = document.querySelector(".right-arrow");
+
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const newTransformValue = -currentIndex * 100 + "%";
+      carouselWrapper.style.transform = "translateX(" + newTransformValue + ")";
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+    }
+
+    // Auto slide every 3 seconds
+    setInterval(nextSlide, 3000);
+
+    // Arrow key navigation
+    document.addEventListener("keydown", function (event) {
+      switch (event.key) {
+        case "ArrowLeft":
+          prevSlide();
+          break;
+        case "ArrowRight":
+          nextSlide();
+          break;
+        default:
+          break;
+      }
+    });
+
+    // Arrow button navigation
+    leftArrow.addEventListener("click", prevSlide);
+    rightArrow.addEventListener("click", nextSlide);
+  });
+</script>
