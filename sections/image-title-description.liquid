@@ -76,22 +76,13 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    width: 100%;
   }
 
-  .left-row .image-column {
-    order: 1;
-  }
-
-  .left-row .text-column {
-    order: 2;
-  }
-
-  .right-row .image-column {
-    order: 2;
-  }
-
-  .right-row .text-column {
-    order: 1;
+  .image-column,
+  .text-column {
+    width: 50%;
+    box-sizing: border-box;
   }
 
   .image-column img {
@@ -100,7 +91,6 @@
   }
 
   .text-column {
-    flex: 1;
     padding: 0 20px;
   }
 
@@ -111,6 +101,7 @@
 
     .text-column {
       padding: 20px 0;
+      width: 100%;
     }
   }
 </style>

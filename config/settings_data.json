@@ -174,6 +174,33 @@
         ],
         "settings": {
         }
+      },
+      "image-title-description": {
+        "type": "image-title-description",
+        "blocks": {
+          "cb28434c-6899-4c2a-93de-9b1f0b9715d5": {
+            "type": "image_title_desc1",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/870dd1709d05e5291062eb6bfee46733.png",
+              "title": "The benefits",
+              "description": "Conventional Soap And Shampoo Can Be Drying And Strip Away Beneficial Natural Oils. Our Cleansing Body & Scalp Polish Works Gently To Purify And Detoxify, With Moroccan Rhassoul Clay To Draw Out Dirt And Debris And Essential Oils Like Lavender, Geranium And Grapefruit Peel To Condition And Hydrate. Himalayan Salt And Jeju Volcanic Ash Exfoliate Dead Skin Cells And Remove Flaky Scalp Buildup. Ceylon Cinnamon Oil Promotes Healthy Circulation Of Blood And Stimulates Hair Growth. Argan And Olive Oil Moisturize And Condition The Skin And Hair Strands."
+            }
+          },
+          "ae0cd6d7-533c-4f0a-b02f-c6763a0bb5bb": {
+            "type": "image_title_desc2",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/41a80a50b280a206d11ab4a6ef25ea96.png",
+              "title": "How to use it",
+              "description": "Work Into A Rich Lather, Massage Onto Soaked Skin From Neck To Toe, Then Rinse Thoroughly."
+            }
+          }
+        },
+        "block_order": [
+          "cb28434c-6899-4c2a-93de-9b1f0b9715d5",
+          "ae0cd6d7-533c-4f0a-b02f-c6763a0bb5bb"
+        ],
+        "settings": {
+        }
       }
     },
     "content_for_index": [
