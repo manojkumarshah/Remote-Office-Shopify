@@ -1,16 +1,39 @@
-{% assign featured_product = collections.all.products | first %}
+{% assign first_product = collections['all-products'].products.first %}
 
-{% if featured_product %}
-  <!-- Your code to display the featured product -->
+{% if first_product %}
+  <!-- Your code to display details for the first product -->
   <div class="product-section">
     <div class="row">
-      <!-- ... Other sections of your code ... -->
+      <div class="col-md-2 thumbnail-area">
+        <div class="product-thumbnail">
+          {% if first_product.images.size > 0 %}
+            {% for image in first_product.images %}
+              <img src="{{ image.src | img_url: 'medium' }}" alt="Product Gallery Image">
+            {% endfor %}
+          {% else %}
+            <p>No gallery images available for this product.</p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-5 main-img">
+        <div class="product-main-image">
+          <img src="{{ first_product.featured_image.src | img_url: 'medium' }}" alt="product-main-image">
+        </div>
+      </div>
       <div class="col-md-5 detail-area">
         <div class="product-details">
-          <!-- ... Other details ... -->
+          <ul class="pro-cat">
+            {{ first_product.product_type | replace: ',', '<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none"><circle cx="2" cy="2" r="2" fill="#333333"/></svg>' | raw }}
+          </ul>
+          <h1 class="product-title">
+            {{ first_product.title }}
+          </h1>
+          <p class="product-description">
+            {{ first_product.description }}
+          </p>
         </div>
         <hr>
-        {% assign product_features = featured_product.metafields.product_features %}
+        {% assign product_features = first_product.metafields.product_features %}
         {% if product_features.size > 0 %}
           <div class="product-additional-features">
             {% for feature in product_features %}
@@ -22,12 +45,12 @@
           </div>
         {% endif %}
         <div class="product-action">
-          <!-- ... Other actions ... -->
+          <!-- Your actions for the first product -->
         </div>
       </div>
     </div>
   </div>
 {% else %}
-  <!-- Code to handle the case when there is no featured product -->
-  <p>No featured product found.</p>
+  <!-- Code to handle the case when there is no product in the collection -->
+  <p>No product found in the collection.</p>
 {% endif %}
