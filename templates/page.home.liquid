@@ -1,4 +1,4 @@
-{% assign featured_product = collections.all.products | where: 'product.metafields.custom.featured_product', 'true' | first %}
+{% assign featured_product = collections.all.products | where: 'metafields.custom.featured_product', 'true' | first %}
 
 {% if featured_product %}
   <!-- Your code to display the featured product -->
