@@ -1,12 +1,116 @@
+<!-- image-title-description.liquid -->
+<div class="image-title-description-section">
+  {% for block in section.blocks %}
+    <div class="row {% cycle 'left-row', 'right-row' %}">
+      <div class="image-column">
+        <img src="{{ block.settings.image | img_url: 'medium' }}" alt="{{ block.settings.title }}">
+      </div>
+      <div class="text-column">
+        <h2>{{ block.settings.title }}</h2>
+        <p>{{ block.settings.description }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Image Title Description",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "image_title_desc1",
+      "name": "Row 1",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "image_title_desc2",
+      "name": "Row 2",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
+<style>
+  .image-title-description-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px; /* Adjust as needed */
+    margin: auto;
+  }
 
-{% stylesheet %}
-{% endstylesheet %}
+  .row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
 
-{% javascript %}
-{% endjavascript %}
+  .left-row .image-column {
+    order: 1;
+  }
+
+  .left-row .text-column {
+    order: 2;
+  }
+
+  .right-row .image-column {
+    order: 2;
+  }
+
+  .right-row .text-column {
+    order: 1;
+  }
+
+  .image-column img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .text-column {
+    flex: 1;
+    padding: 0 20px;
+  }
+
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+
+    .text-column {
+      padding: 20px 0;
+    }
+  }
+</style>
