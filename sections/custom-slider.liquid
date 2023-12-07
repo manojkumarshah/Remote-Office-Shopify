@@ -25,7 +25,11 @@
                 </div>
               </div>
             </div>
+
             {% assign count = count | plus: 1 %}
+            {% if count > 4 %}
+              {% assign count = 1 %}
+            {% endif %}
           {% endfor %}
         </div>
         <a class="carousel-control-prev bg-transparent w-aut" href="#keyingredient" role="button" data-bs-slide="prev">
