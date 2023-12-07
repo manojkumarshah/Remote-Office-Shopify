@@ -1,13 +1,40 @@
 <!-- custom-slider.liquid -->
-<div class="carousel-container">
-  <div class="carousel-wrapper">
+
+<div class="key-ingredients">
+        <div class="text-center my-3">
+            <div class="row mx-auto my-auto justify-content-center">
+                <div class="key-ingredients-title"> 
+                    <h2 class="title">Key Ingredients</h2>
+                </div>
+
+              
+<div id="keyingredient" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner key-ingredients-slider" role="listbox">
     {% for slide in section.blocks %}
-      <div class="carousel-slide">
-        <img src="{{ slide.settings.image | img_url: 'medium' }}" alt="{{ slide.settings.title }}">
-        <h3>{{ slide.settings.title }}</h3>
-        <p>{{ slide.settings.description }}</p>
-      </div>
+<div class="carousel-item <?php echo $count == 1 ? 'active' : ''; ?>">
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="key-ingredients-slider-item-img">
+                                                        <img src="{{ slide.settings.image | img_url: 'medium' }}" alt="{{ slide.settings.title }}">
+                                            </div>
+                                            <div class="key-ingredients-slider-item-title">
+                                                <h2 class="title">{{ slide.settings.title }}</h2>
+                                            </div>
+                                            <div class="key-ingredients-slider-item-description">
+                                                <p class="description">{{ slide.settings.description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
     {% endfor %}
+    </div>
+                        <a class="carousel-control-prev bg-transparent w-aut" href="#keyingredient" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a class="carousel-control-next bg-transparent w-aut" href="#keyingredient" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
   </div>
 
   <button class="arrow left-arrow">&lt;</button>
