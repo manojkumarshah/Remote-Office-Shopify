@@ -1,3 +1,19 @@
+<!-- custom-slider.liquid -->
+<div class="carousel-container">
+  <div class="carousel-wrapper">
+    {% for slide in section.blocks %}
+      <div class="carousel-slide">
+        <img src="{{ slide.settings.image | img_url: 'medium' }}" alt="{{ slide.settings.title }}">
+        <h3>{{ slide.settings.title }}</h3>
+        <p>{{ slide.settings.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <button class="arrow left-arrow">&lt;</button>
+  <button class="arrow right-arrow">&gt;</button>
+</div>
+
 {% schema %}
 {
   "name": "Custom Slider",
@@ -27,24 +43,6 @@
   ]
 }
 {% endschema %}
-
-
-<!-- custom-slider.liquid -->
-<div class="carousel-container">
-  <div class="carousel-wrapper">
-    {% for slide in section.blocks %}
-      <div class="carousel-slide">
-        <!-- Customize the content for each slide -->
-        <img src="{{ slide.settings.image | img_url: 'medium' }}" alt="{{ slide.settings.title }}">
-        <h3>{{ slide.settings.title }}</h3>
-        <p>{{ slide.settings.description }}</p>
-      </div>
-    {% endfor %}
-  </div>
-
-  <button class="arrow left-arrow">&lt;</button>
-  <button class="arrow right-arrow">&gt;</button>
-</div>
 
 <style>
   .carousel-container {
