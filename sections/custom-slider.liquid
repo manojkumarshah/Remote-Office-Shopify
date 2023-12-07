@@ -1,12 +1,90 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Custom Slider",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "slide1_image",
+      "label": "Slide 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "slide1_title",
+      "label": "Slide 1 Title"
+    },
+    {
+      "type": "textarea",
+      "id": "slide1_description",
+      "label": "Slide 1 Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide2_image",
+      "label": "Slide 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "slide2_title",
+      "label": "Slide 2 Title"
+    },
+    {
+      "type": "textarea",
+      "id": "slide2_description",
+      "label": "Slide 2 Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide3_image",
+      "label": "Slide 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "slide3_title",
+      "label": "Slide 3 Title"
+    },
+    {
+      "type": "textarea",
+      "id": "slide3_description",
+      "label": "Slide 3 Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide4_image",
+      "label": "Slide 4 Image"
+    },
+    {
+      "type": "text",
+      "id": "slide4_title",
+      "label": "Slide 4 Title"
+    },
+    {
+      "type": "textarea",
+      "id": "slide4_description",
+      "label": "Slide 4 Description"
+    }
+  ]
+}
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
+<!-- custom-slider.liquid -->
+<div class="custom-slider">
+  <div class="slider-item">
+    <img src="{{ section.settings.slide1_image | img_url: 'medium' }}" alt="Slide 1">
+    <h3>{{ section.settings.slide1_title }}</h3>
+    <p>{{ section.settings.slide1_description }}</p>
+  </div>
+  <div class="slider-item">
+    <img src="{{ section.settings.slide2_image | img_url: 'medium' }}" alt="Slide 2">
+    <h3>{{ section.settings.slide2_title }}</h3>
+    <p>{{ section.settings.slide2_description }}</p>
+  </div>
+  <div class="slider-item">
+    <img src="{{ section.settings.slide3_image | img_url: 'medium' }}" alt="Slide 3">
+    <h3>{{ section.settings.slide3_title }}</h3>
+    <p>{{ section.settings.slide3_description }}</p>
+  </div>
+  <div class="slider-item">
+    <img src="{{ section.settings.slide4_image | img_url: 'medium' }}" alt="Slide 4">
+    <h3>{{ section.settings.slide4_title }}</h3>
+    <p>{{ section.settings.slide4_description }}</p>
+  </div>
+</div>
